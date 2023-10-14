@@ -1,12 +1,14 @@
 """Handles endpoints for user service"""
 from starlette.requests import Request
+from sqlalchemy import Engine
+from sqlalchemy.orm import sessionmaker
 
 
 class UserEndpoint:
     """endpoint class to handle user services"""
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, db_engine: Engine) -> None:
+        self.session = sessionmaker(db_engine)
 
     def create_user(self, _: Request) -> None:
         """Handles create user service"""
