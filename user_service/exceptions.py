@@ -20,3 +20,13 @@ class UserDoesNotExistError:  # pylint: disable=too-few-public-methods
         """user does not exist payload"""
 
         return {"code": 404, "error": "User not Found"}
+
+
+class AuthenticationFailed:  # pylint: disable=too-few-public-methods
+    """class for invalid auth keys error"""
+
+    @staticmethod
+    def error() -> dict[str, Union[str, int]]:
+        """internal authentication failed"""
+
+        return {"code": 403, "error": "Invalid authentication"}
