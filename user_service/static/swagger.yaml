@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: User Service - OpenAPI 3.0
+  description: User service to perform CRUD over user resource
+  contact:
+    email: cu.18bcs2174@gmail.com
+  version: 1.0.11
+servers:
+  - url: http://localhost:8000
+paths:
+  /user:
+    post:
+      description: Create new user record
+      operationId: add-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '409':
+          description: User already exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 409
+                  error:
+                    type: string
+                    example: User already exist with the same email or phone
+  /user/{id}:
+    patch:
+      description: update existing user record
+      operationId: update-user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: User not Found
+    delete:
+      description: delete existing record
+      operationId: delete-user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                nullable: true
+                example: None
+        '404':
+          description: User does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: User not Found
+    get:
+      description: get existing record
+      operationId: get-user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: User not Found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: "32a5dec9-a74a-432b-ac4c-af1bfa2a52b2"
+        firstName:
+          type: string
+          example: "anand"
+        lastName:
+          type: string
+          example: "kumar"
+        emailID:
+          type: string
+          example: "random@gmail.com"
+        phoneNumber:
+          type: string
+          example: "0123456789"
