@@ -13,10 +13,10 @@ class UserExistError:  # pylint: disable=too-few-public-methods
 
 
 class UserDoesNotExistError:  # pylint: disable=too-few-public-methods
-    """class for user doses not exist error"""
+    """class for user does not exist error"""
 
     @staticmethod
     def error() -> dict[str, Union[str, int]]:
-        """user doses not exist payload"""
+        """user does not exist payload"""
 
         return {"code": 404, "error": "User not Found"}
