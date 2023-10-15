@@ -1,4 +1,5 @@
 """Handles endpoints for user service"""
+from typing import Final
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 from sqlalchemy.exc import IntegrityError
@@ -11,10 +12,10 @@ class UserEndpoint:
     """endpoint class to handle user services"""
 
     svc: UserService = UserService(ASYNC_DB_ENGINE)
-    CREATED: int = 201
-    SUCCESS: int = 200
-    CONFLICT: int = 409
-    NOT_FOUND: int = 404
+    CREATED: Final[int] = 201
+    SUCCESS: Final[int] = 200
+    CONFLICT: Final[int] = 409
+    NOT_FOUND: Final[int] = 404
 
     @classmethod
     async def create_user(cls, request: Request) -> JSONResponse:
