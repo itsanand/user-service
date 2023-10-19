@@ -1,0 +1,67 @@
+version: '3.9'
+services:
+  user-service:
+    build: /
+    container_name: user-service
+    environment:
+      - DB_HOST=user-db:5432
+      - DB_NAME=user_service
+      - DB_USER=user_service
+      - DB_PASSWORD=8045
+    depends_on:
+      - user-db
+    ports:
+      - "8000:8000"
+  content-service:
+    build: ../content-service/
+    container_name: content-service
+    environment:
+      - DB_HOST=content-db:5432
+      - DB_NAME=content_service
+      - DB_USER=content_service
+      - DB_PASSWORD=8045
+      - USER_INTERACTION_HOST=user-interaction-service:7000
+    depends_on:
+      - content-db
+    ports:
+      - "9000:9000"
+  user-interaction-service:
+    build: ../user-interaction-service/
+    container_name: user-interaction-service
+    environment:
+      - DB_HOST=user-interaction-db:5432
+      - DB_NAME=user_interaction_service
+      - DB_USER=user_interaction_service
+      - DB_PASSWORD=8045
+      - USER_SERVICE_HOST=user-service:8000
+    depends_on:
+      - user-interaction-db
+    ports:
+      - "7000:7000"
+  user-db:
+    image: postgres:latest
+    container_name: user-db
+    environment:
+      - POSTGRES_DB=user_service
+      - POSTGRES_USER=user_service
+      - POSTGRES_PASSWORD=8045
+    ports:
+      - "5432:5432"
+  content-db:
+    image: postgres:latest
+    container_name: content-db
+    environment:
+      - POSTGRES_DB=content_service
+      - POSTGRES_USER=content_service
+      - POSTGRES_PASSWORD=8045
+    ports:
+      - "5433:5432"
+  user-interaction-db:
+    image: postgres:latest
+    container_name: user-interaction-db
+    environment:
+      - POSTGRES_DB=user_interaction_service
+      - POSTGRES_USER=user_interaction_service
+      - POSTGRES_PASSWORD=8045
+    ports:
+      - "5434:5432"

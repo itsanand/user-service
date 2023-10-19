@@ -46,7 +46,7 @@ paths:
         - in: path
           name: id
           schema:
-            type: integer
+            type: string
           required: true
       requestBody:
         content:
@@ -81,7 +81,7 @@ paths:
         - in: path
           name: id
           schema:
-            type: integer
+            type: string
           required: true
       responses:
         '200':
@@ -112,7 +112,7 @@ paths:
         - in: path
           name: id
           schema:
-            type: integer
+            type: string
           required: true
       responses:
         '200':
