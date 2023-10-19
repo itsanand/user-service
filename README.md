@@ -24,7 +24,8 @@ http://localhost:8000/docs
 http://localhost:7000/docs
 ```
 
-![](user_service\static\service_design.png)
+# Service Design
+![Alt text](user_service/static/service_design.png)
 
 ## User-service Database
 
