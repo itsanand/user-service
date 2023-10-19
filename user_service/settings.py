@@ -5,17 +5,20 @@ from starlette.config import Config
 CONFIG = Config(".env")
 BASE_DIR = Path(__file__).parent
 
+
+DB_HOST = CONFIG("DB_HOST", cast=str, default="localhost:5432")
+DB_NAME = CONFIG("DB_NAME", cast=str, default="postgres")
+DB_USER = CONFIG("DB_USER", cast=str, default="postgres")
+DB_PASSWORD = CONFIG("DB_PASSWORD", cast=str, default="8045")
+
+
 DATABASE_URL = CONFIG(
     "DATABASE_URL",
     cast=str,
-    default="postgresql://postgres:8045@localhost/postgres",
+    default=f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}",
 )
 ASYNC_DATABASE_URL = CONFIG(
     "ASYNC_DATABASE_URL",
     cast=str,
-    default="postgresql+asyncpg://postgres:8045@localhost/postgres",
+    default=f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}",
 )
-DB_HOST = CONFIG("DB_HOST", cast=str, default="localhost")
-DB_NAME = CONFIG("DB_NAME", cast=str, default="postgres")
-DB_USER = CONFIG("DB_USER", cast=str, default="postgres")
-DB_PASSWORD = CONFIG("DB_PASSWORD", cast=str, default="8045")
