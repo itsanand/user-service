@@ -16,7 +16,7 @@ routes: list[Route] = [
     Route("/user/{id}", user_endpoint.update_user, methods=["PATCH"]),
     Route("/user/{id}", user_endpoint.delete_user, methods=["DELETE"]),
     Route("/user/{id}", user_endpoint.fetch_user, methods=["GET"]),
-    Route("/docs", swagger_doc.swagger_ui, methods=["GET"]),
+    Route("/user-service/docs", swagger_doc.swagger_ui, methods=["GET"]),
     Route("/spec", swagger_doc.get_spec, methods=["GET"]),
 ]
 

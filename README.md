@@ -1,4 +1,4 @@
-### user-service
+# user-service
 
 ## Clone the following repo on your local
 ```bash
@@ -19,9 +19,9 @@ docker-compose up --build
 
 ### Swagger Docs can be accessed for each service from below urls
 ```bash
-http://localhost:7000/docs
-http://localhost:8000/docs
-http://localhost:7000/docs
+http://localhost:7000/user-interaction-service/docs
+http://localhost:8000/user-service/docs
+http://localhost:9000/content-service/docs
 ```
 
 # Service Design
@@ -66,9 +66,6 @@ class Content:
     story: Column = Column(String)
     publishedDate: Column = Column(DateTime)
 ```
-
-
-# User Service - Low-Level Design
 
 ## UserService Class
 
