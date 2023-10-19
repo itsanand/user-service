@@ -20,7 +20,7 @@ class UserEndpoint:
     SUCCESS: Final[int] = 200
     CONFLICT: Final[int] = 409
     NOT_FOUND: Final[int] = 404
-    INTERNAL_AUTH: Final[str] = "interaction"
+    INTERNAL_AUTH: Final[str] = "groot"
     FORBIDDEN: Final[int] = 403
 
     @classmethod

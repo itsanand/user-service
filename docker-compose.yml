@@ -20,6 +20,7 @@ services:
       - DB_NAME=content_service
       - DB_USER=content_service
       - DB_PASSWORD=8045
+      - USER_SERVICE_HOST=user-service:8000
       - USER_INTERACTION_HOST=user-interaction-service:7000
     depends_on:
       - content-db
