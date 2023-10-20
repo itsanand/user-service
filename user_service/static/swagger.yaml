@@ -114,6 +114,11 @@ paths:
           schema:
             type: string
           required: true
+        - in: header
+          name: x-internal
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful operation
